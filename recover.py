@@ -8,7 +8,7 @@ import struct
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import BinaryIO
+from typing import BinaryIO, Callable
 
 CHUNK_SIZE = 1024 * 1024
 MAX_FILE_SIZE = 2 * 1024 * 1024 * 1024
@@ -220,6 +220,7 @@ def carve(
     source_size: int,
     output_dir: Path,
     max_file_size: int = MAX_FILE_SIZE,
+    on_file_recovered: Callable[[Path], None] | None = None,
 ) -> dict[str, int]:
     """Carve contiguous files from a seekable source without modifying it."""
     recovered: dict[str, int] = {}
@@ -254,6 +255,8 @@ def carve(
                 remaining -= len(data)
 
         recovered[candidate.name] = recovered.get(candidate.name, 0) + 1
+        if on_file_recovered is not None:
+            on_file_recovered(destination)
         file_number += 1
         scan_offset = end
 

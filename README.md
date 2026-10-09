@@ -54,6 +54,24 @@ Set a smaller upper bound for individual recovered files when needed:
 python recover.py "D:\images\card.img" --output "E:\recovered" --max-file-size 536870912
 ```
 
+## Browser website
+
+Run the local website from the project directory:
+
+```powershell
+python web.py
+```
+
+Open [http://127.0.0.1:8765](http://127.0.0.1:8765) in your browser. Keep the
+terminal window open while scanning; press `Ctrl+C` there to stop the server.
+Enter a disk image or device path and a destination folder on a different
+physical device. The interface shows the scan results and provides downloads
+for files recovered in that session.
+
+The website binds only to the local computer. Disk data and recovered files
+are processed locally; they are not uploaded to a hosted service. Physical
+device access may require starting the server from an Administrator terminal.
+
 ## Limitations and safety
 
 - This is **file carving**, not filesystem undelete. It searches raw bytes for
@@ -81,6 +99,9 @@ python -m unittest discover -s tests -v
 ```text
 recover.py          Read-only scanner and file carver
 tests/test_recover.py
+web.py              Loopback-only browser interface
+static/             Website page, styles, and browser code
+tests/test_web.py
 README.md
 LICENSE
 ```

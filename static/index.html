@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0c1218">
+    <title>Lost Data Retrieval</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Lost Data Retrieval home">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span>Recovery<span class="brand-light"> Lab</span></span>
+      </a>
+      <span class="local-badge"><span class="status-dot"></span> LOCAL SESSION</span>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow"><span class="eyebrow-line"></span> PERSONAL DATA RECOVERY</p>
+        <h1>Give lost files<br>a <span>second chance.</span></h1>
+        <p class="intro-copy">Scan a disk image or storage device for recognizable photos, videos, documents, and more. Your data stays on this computer.</p>
+        <div class="format-list" aria-label="Supported file formats">
+          <span>JPEG</span><span>PNG</span><span>GIF</span><span>PDF</span><span>BMP</span><span>WAV</span><span>ZIP</span><span>MP4</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-labelledby="scan-heading">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">RECOVERY WORKSPACE</p>
+            <h2 id="scan-heading">Set up a scan</h2>
+          </div>
+          <span class="read-only-badge"><span aria-hidden="true">◉</span> SOURCE IS READ-ONLY</span>
+        </div>
+
+        <div class="safety-note" role="note">
+          <span class="note-icon" aria-hidden="true">!</span>
+          <p><strong>Before you begin</strong><br>Stop using the affected device. Save recovered files to a <strong>different physical device</strong> so you do not overwrite data that may still be recoverable.</p>
+        </div>
+
+        <form id="scan-form">
+          <label for="source">Source drive or disk image</label>
+          <input id="source" name="source" type="text" autocomplete="off" spellcheck="false" placeholder="D:\images\memory-card.img" required>
+          <p class="field-hint">Enter a disk image path or a device path, such as <code>\\.\PhysicalDrive1</code>. Check the device number carefully.</p>
+
+          <label for="output">Save recovered files to</label>
+          <input id="output" name="output" type="text" autocomplete="off" spellcheck="false" placeholder="E:\recovered-files" required>
+          <p class="field-hint">Choose a folder on a separate physical drive. This local app cannot browse folders for you.</p>
+
+          <details class="advanced">
+            <summary>Advanced options</summary>
+            <label for="max-file-size">Maximum individual file size</label>
+            <div class="size-field">
+              <input id="max-file-size" name="max-file-size" type="number" min="1" max="2147483648" value="2147483648" required>
+              <span>bytes</span>
+            </div>
+          </details>
+
+          <label class="confirm-option" for="confirm-device">
+            <input id="confirm-device" name="confirm-device" type="checkbox" required>
+            <span>I have checked the source and confirmed the destination is on a different physical device.</span>
+          </label>
+
+          <button id="scan-button" class="primary-button" type="submit">
+            <span>Start read-only scan</span><span aria-hidden="true">→</span>
+          </button>
+        </form>
+
+        <section id="results" class="results" aria-live="polite" aria-atomic="false" hidden>
+          <div class="result-heading">
+            <div>
+              <p class="eyebrow">SCAN STATUS</p>
+              <h2 id="result-title">Preparing scan</h2>
+            </div>
+            <span id="result-indicator" class="result-indicator" aria-hidden="true"></span>
+          </div>
+          <div id="progress-track" class="progress-track" hidden><span></span></div>
+          <p id="result-message" class="result-message"></p>
+          <div id="result-counts" class="result-counts"></div>
+          <ul id="result-files" class="result-files"></ul>
+          <p id="result-output" class="result-output"></p>
+        </section>
+      </section>
+
+      <p class="disclaimer"><strong>Best-effort recovery.</strong> This tool carves contiguous files from raw data; it cannot restore original filenames or folders. Fragmented, overwritten, encrypted, or TRIM-erased data may not be recoverable. For a failing device, image it with a specialist tool before scanning.</p>
+    </main>
+
+    <footer>
+      <span>Recovery Lab <span class="footer-muted">· Read-only file carving</span></span>
+      <a href="https://github.com/Harrisonegbo/Lost-Data-Retrieval" target="_blank" rel="noreferrer">Open-source project <span aria-hidden="true">↗</span></a>
+    </footer>
+  </body>
+</html>
